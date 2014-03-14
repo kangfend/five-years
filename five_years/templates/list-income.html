@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h1>Income List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Added</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for income in object_list %}
+                        <tr>
+                            <td>{{ income.source }}</td>
+                            <td>{{ income.name }}</td>
+                            <td>{{ income.value }}</td>
+                            <td>{{ income.added_at }}</td>
+                            <td>{{ income.updated_at }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5"><h3>No income to be displayed yet!</h3></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- row -->
+    </div>
+{% endblock content %}

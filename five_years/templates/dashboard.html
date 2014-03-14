@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load humanize %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="jumbotron">
+                    <h1>5 Year Income</h1>
+                    <p>Fund Spliting</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <div class="well">
+                    <h4>Total Income</h4>
+                    <ul>
+                        <li>
+                            <strong>This Week</strong>
+                            <br>IDR {{ income_this_week|intcomma }}
+                            <br>
+                            <br>
+                        </li>
+                        <li>
+                            <strong>This Month</strong>
+                            <br>IDR {{ income_this_month|intcomma }}
+                            <br>
+                            <br>
+                        </li>
+                        <li>
+                            <strong>All The Time</strong>
+                            <br>IDR {{ income_total|intcomma }}
+                            <br>
+                            <br>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="well">
+                    <h4>Living Expense</h4>
+                    {% print_fund_summary request 'LivingExpense' %}
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="well">
+                    <h4>Interpersonal Circle</h4>
+                    {% print_fund_summary request 'InterpersonalCircle' %}
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <div class="well">
+                    <h4>Extend Knowledge</h4>
+                    {% print_fund_summary request 'ExtendKnowledge' %}
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="well">
+                    <h4>Holiday</h4>
+                    {% print_fund_summary request 'Holiday' %}
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="well">
+                    <h4>Saving</h4>
+                    {% print_fund_summary request 'Saving' %}
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+{% endblock content %}

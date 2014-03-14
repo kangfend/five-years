@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load humanize %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <h1>{{ the_title|titleize|title }} List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>In</th>
+                            <th>Out</th>
+                            <th>Done At</th>
+                            <th>Income</th>
+                            <th>Added</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in object_list %}
+                        <tr>
+                            <td>{{ transaction.description }}</td>
+                            {% if transaction.transaction|transaction_flow == 'in' %}
+                                <td>{{ transaction.value|intcomma }}</td>
+                                <td></td>
+                            {% else %}
+                                <td></td>
+                                <td>{{ transaction.value|intcomma }}</td>
+                            {% endif %}
+                            <td>{{ transaction.done_at }}</td>
+                            <td>{{ transaction.income }}</td>
+                            <td>{{ transaction.added_at }}</td>
+                            <td>{{ transaction.updated_at }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5"><h3>No income to be displayed yet!</h3></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <h3>Balance: <i class="glyphicon glyphicon-usd"></i> {{ balance|intcomma }}</h3>
+            </div>
+
+        </div>
+        <!-- row -->
+    </div>
+{% endblock content %}
